@@ -6,7 +6,7 @@
 }
 
  body {
-    background-image: url(./image/hanna-plants-JhFYAeYLZTY-unsplash\ \(3\).jpg);
+    background-image: url(./images/backgroundimg.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
  }
@@ -37,9 +37,13 @@ h1 {
 
 .search-header h2 {
     padding-bottom: 5px;
+    
 
 }
 
+.search-container h2 {
+    color:white;
+}
 
 .search-city-input {
 
@@ -75,7 +79,7 @@ h1 {
     display: block;
     width: 100%;
     padding: 5px;
-    background-color:rgba(128, 128, 128, 0.24);
+    background-color:rgba(128, 128, 128, 0.384);
     border-color: 2px solid white;
     font-weight:bold;
     border-radius:5px;
@@ -96,7 +100,7 @@ h1 {
 .current-city-display {
     padding-left: 5px;
     padding-top: 10px;
-    border: 2px solid white;
+    border: 1px solid black;
     padding-bottom: 20px;
     background-color:rgba(128, 128, 128, 0.24);
     
@@ -106,6 +110,7 @@ h1 {
 
 .current-city-display h2 {
     padding-bottom: 20px;
+    
    
     
 }
