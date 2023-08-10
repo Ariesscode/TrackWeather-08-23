@@ -16,3 +16,18 @@ h1 {
     color:white;
     
 }
+
+.wrapper {
+    display:flex;
+    
+
+}
+
+.weather-cards {
+    display:flex;
+    
+}
+
+.city-option {
+    display:block;
+}
