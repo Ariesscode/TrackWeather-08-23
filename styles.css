@@ -5,29 +5,30 @@
 
 }
 
-
-  
-
+ 
 
 
 h1 {
     text-align: center;
-    background-color: white;
-    margin-bottom: 20px;
+    
+    
     padding-top: 10px;
-    height: 50px;
+    background-color:rgba(8, 8, 90, 0.747);
+
+
     font-weight: bold;
-    color: black;
-    border:5px solid white;
+    color: white;
+    
 
 }
+
+
 
 .wrapper {
     display: flex;
     padding-left: 20px;
     padding-top: 20px;
-    background-image: url(./images/timothy-eberly-XVE2eMZGrhk-unsplash\ \(1\).jpg);
-    background-size: cover;
+    
 }
 
 .search-header h2 {
@@ -70,7 +71,10 @@ h1 {
     display: block;
     width: 100%;
     padding: 5px;
-
+    background-color:rgba(128, 128, 128, 0.24);
+    border: 2px solid black;
+    font-weight:bold;
+    border-radius:5px;
     margin-top: 10px;
 }
 
@@ -87,12 +91,17 @@ h1 {
 .current-city-display {
     padding-left: 5px;
     padding-top: 10px;
-    border: 2px solid black;
+    border: 2px solid white;
     padding-bottom: 20px;
+    background-color:rgba(128, 128, 128, 0.24);
+
+
 }
 
 .current-city-display h2 {
     padding-bottom: 20px;
+   
+    
 }
 
 .current-date {
@@ -114,14 +123,19 @@ h1 {
     width: 20%;
     height: 200px;
     margin-right: 5px;
+    border:2px solid black;
+    color:black;
+
 }
 
 .tuesday-forcast {
-    background-color:rgba(128, 128, 128, 0.24);
+    background-color:rgba(8, 8, 90, 0.747);
     padding: 5px;
     width: 20%;
     height: 200px;
     margin-right: 5px;
+    border:2px solid black;
+
 }
 
 
@@ -131,6 +145,8 @@ h1 {
     width: 20%;
     height: 200px;
     margin-right: 5px;
+    border:2px solid black;
+
 }
 
 
@@ -140,6 +156,8 @@ h1 {
     width: 20%;
     height: 200px;
     margin-right: 5px;
+    border:2px solid black;
+
 }
 
 
@@ -149,6 +167,8 @@ h1 {
     width: 20%;
     height: 200px;
     margin-right: 5px;
+    border:2px solid black;
+
 }
 
 
@@ -158,6 +178,8 @@ h1 {
     width: 20%;
     height: 200px;
     margin-right: 5px;
+    border:2px solid black;
+
 }
 
 
@@ -167,5 +189,6 @@ h1 {
     width: 20%;
     height: 200px;
     margin-right: 5px;
+    border:2px solid black;
 }
 
