@@ -59,7 +59,7 @@ h1 {
 
 .weather-cards {
     display: flex;
-    padding-top:40px;
+    padding-top:10px;
     
 
 
@@ -74,11 +74,89 @@ h1 {
 }
 
 .fiveday-forcast {
-    padding-top:100px;
+    padding-top:20px;
 
 }
 
 .current-city-display {
     padding-left:30px;
     padding-top:20px;
+}
+
+.current-city-display h2 {
+    padding-bottom: 20px;
+}
+
+.current-city {
+    padding-bottom:10px;
+}
+
+.wind {
+    padding-bottom: 10px;
+}
+
+.temp {
+    padding-bottom: 10px;
+}
+
+
+.monday-forcast {
+    background-color:lawngreen;
+    padding:5px;
+    width:20%;
+    height:200px;
+    margin-right:5px;
+}
+
+.tuesday-forcast {
+    background-color:lawngreen;
+    padding:5px;
+    width:20%;
+    height:200px;
+    margin-right: 5px;
+}
+
+
+.wednesday-forcast {
+    background-color:lawngreen;
+    padding:5px;
+    width:20%;
+    height:200px;
+    margin-right: 5px;
+}
+
+
+.thursday-forcast {
+    background-color:lawngreen;
+    padding:5px;
+    width:20%;
+    height:200px;
+    margin-right: 5px;
+}
+
+
+.friday-forcast {
+    background-color:lawngreen;
+    padding:5px;
+    width:20%;
+    height:200px;
+    margin-right: 5px;
+}
+
+
+.saturday-forcast {
+    background-color:lawngreen;
+    padding:5px;
+    width:20%;
+    height:200px;
+    margin-right: 5px;
+}
+
+
+.sunday-forcast {
+    background-color:lawngreen;
+    padding:5px;
+    width:20%;
+    height:200px;
+    margin-right: 5px;
 }
