@@ -19,32 +19,53 @@ h1 {
 
 .wrapper {
     display: flex;
+    padding-left:20px;
+    
 
 
 }
 
-.search-header{
-    width:40%;
+
+.search-header h2 {
+    padding-bottom:5px;
+  
 }
 
-.current-city-display {
-    padding-left: 30px;
+
+.search-city-input {
+    
+    display:block;
+    height:30px;
 
 
 }
+
+
 
 
 
 .weather-cards {
     display: flex;
+    padding-top:40px;
+    
 
 
 }
 
 .city-option {
     display: block;
+    width:100%;
+    padding:5px;
+    margin-top:10px;
+    margin-left:5px;
+    
 }
 
 .five-day-forcast {
-    padding-top:30px;
+    padding-top:100px;
+
+}
+
+.current-city-display {
+    padding-left:30px;
 }
