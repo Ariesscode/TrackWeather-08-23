@@ -20,10 +20,13 @@ h1 {
 .wrapper {
     display: flex;
     padding-left:20px;
+    padding-top:20px;
     
 
 
 }
+
+
 
 
 .search-header h2 {
@@ -36,11 +39,21 @@ h1 {
     
     display:block;
     height:30px;
+    margin-bottom: 10px;
+    
 
 
 }
 
+.search-bttn {
+    margin-bottom: 30px;
+    width:100%;
+}
 
+
+.search-container {
+    padding-right:20px;
+}
 
 
 
@@ -56,16 +69,16 @@ h1 {
     display: block;
     width:100%;
     padding:5px;
-    margin-top:10px;
-    margin-left:5px;
     
+    margin-top:10px;
 }
 
-.five-day-forcast {
+.fiveday-forcast {
     padding-top:100px;
 
 }
 
 .current-city-display {
     padding-left:30px;
+    padding-top:20px;
 }
