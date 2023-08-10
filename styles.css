@@ -23,6 +23,16 @@ h1 {
 
 }
 
+.current-city-display{
+    padding-left:50px;
+   
+}
+
+.flex-box {
+   ;
+
+}
+
 .weather-cards {
     display:flex;
     
