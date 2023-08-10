@@ -1,43 +1,50 @@
 * {
     margin: 0;
-    padding:0;
+    padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 
 h1 {
     text-align: center;
-    background-color:rgba(0, 0, 255, 0.596);
+    background-color: rgba(0, 0, 255, 0.596);
     margin-bottom: 20px;
-    padding-top:10px;
-    height:50px;
+    padding-top: 10px;
+    height: 50px;
     font-weight: bold;
-    color:white;
-    
+    color: white;
+
 }
 
 .wrapper {
-    display:flex;
-    
+    display: flex;
+
 
 }
 
-.current-city-display{
-    padding-left:50px;
-   
+.search-header{
+    width:40%;
 }
 
-.flex-box {
-   ;
+.current-city-display {
+    padding-left: 30px;
+
 
 }
+
+
 
 .weather-cards {
-    display:flex;
-    
+    display: flex;
+
+
 }
 
 .city-option {
-    display:block;
+    display: block;
+}
+
+.five-day-forcast {
+    padding-top:30px;
 }
