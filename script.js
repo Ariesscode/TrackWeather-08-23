@@ -1,6 +1,6 @@
 var searchButton = document.querySelector("#search-button");
 var searchInput = document.getElementById("city-input");
-var currentCityDisplay = document.getElementById("current-city");
+
 var currentDate = document.getElementById("current-date");
 var currentTemp = document.getElementById("current-temp")
 var currentWind = document.getElementById("current-wind");
@@ -34,18 +34,25 @@ async function fetchWeatherData(city) {
         let lon = weatherData.coord.lon;
         console.log(lat,lon); // here we have the longitude and latitude values needed for the geoloacation api
       
-        
+        let units = "metric";
+
         const forcastKey = "6ed102388c0f7d2090336e3ef5fc46dd";
-        const forcastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`;
+        const forcastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=${units}`;
         //two objects should be listed in console with weather data that will be extracted from
         //forcastWeatherData hold all the five day forcast
         var forcastWeatherData = await fetch(`${forcastUrl}`).then(response => response.json()); 
-        
         console.log(forcastWeatherData);
-        
-    } catch(err) {                                                                   
-        console.log(err);                                                              
 
+        var currentcityDisplay = document.getElementById("current-city");
+        currentcityDisplay.innerHTML = forcastWeatherData.city.name;
+        currentHumidity.innerHTML += " " + forcastWeatherData.list[0].main.humidity + " %";
+        currentWind.innerHTML += " " + forcastWeatherData.list[0].wind.speed + " MPH";
+
+    } catch(err) {                                                                   
+        console.log(err);    
+        
     }
+    
+
 }
 
