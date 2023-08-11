@@ -22,6 +22,8 @@ var thursWind = document.getElementById("thurs-wind");
 var friTemp = document.getElementById("fri-temp");
 var friWind = document.getElementById("fri-wind");
 var friHumidity = document.getElementById("fri-humidity");
+var mImage = document.getElementById("m-img");
+var mWeatherImg = document.getElementById("m-weather-img");
 //the array that i got from the five day forcast, did not divide or have object names of daily, hourly, or minutely, everything was a big list <----please read note, feedback
 
 
@@ -70,18 +72,29 @@ async function fetchWeatherData(city) {
         currentWind.innerHTML += " " + forcastWeatherData.list[0].wind.speed + " MPH";
         currentTemp.innerHTML += " " + Math.round(forcastWeatherData.list[0].main.temp * 1.8 + 32) + "\u00B0" + "F";
         currentDate.innerHTML += " " + forcastWeatherData.list[0].dt_txt;
+
+
+        //Reason I had to do it like this, because my array that I got back was one big list with no daily,hourly,minutely,use the 5 forcast day from openweather api. Hope there is a resolution to this, so that i could use a loop
         mTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[4].main.temp * 1.8 + 32) + "\u00B0" + "F";
         mHumidity.innerHTML += " " + forcastWeatherData.list[4].main.humidity + "%";
         mWind.innerHTML += " " + forcastWeatherData.list[4].wind.speed + " MPH";
+       
+
         tuesTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[12].main.temp * 1.8 + 32) + "\u00B0" + "F";
         tuesHumidity.innerHTML += " " + forcastWeatherData.list[12].main.humidity + "%";
         tuesWind.innerHTML += " " + forcastWeatherData.list[12].wind.speed + " MPH";
+
+
         wedTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[20].main.temp * 1.8 + 32) + "\u00B0" + "F";
         wedHumidity.innerHTML += " " + forcastWeatherData.list[20].main.humidity + "%";
         wedWind.innerHTML += " " + forcastWeatherData.list[20].wind.speed + " MPH";
+
+
         thursTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[28].main.temp * 1.8 + 32) + "\u00B0" + "F";
         thursHumidity.innerHTML += " " + forcastWeatherData.list[28].main.humidity + "%";
         thursWind.innerHTML += " " + forcastWeatherData.list[28].wind.speed + " MPH";
+
+        
         friTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[36].main.temp * 1.8 + 32) + "\u00B0" + "F";
         friHumidity.innerHTML += " " + forcastWeatherData.list[36].main.humidity + "%";
         friWind.innerHTML += " " + forcastWeatherData.list[36].wind.speed + " MPH";
