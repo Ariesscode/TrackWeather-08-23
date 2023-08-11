@@ -33,7 +33,10 @@ async function fetchWeatherData(city) {
         
         
         var forcastUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&units=${units}&lang=${lang}`;
+        //two objects should be listed in console with weather data that will be extracted from
+        var forcastWeatherData = await fetch(`${forcastUrl}`).then(response => response.json()); 
         
+        console.log(forcastWeatherData);
         
     } catch(err) {                                                                   
         console.log(err);                                                              
