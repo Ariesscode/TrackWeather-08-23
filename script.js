@@ -36,6 +36,9 @@ async function fetchWeatherData(city) {
 
         searchInput.value = "";
         let units = "metric";
+        currentHumidity.innerHTML = "Humidity:" + "";
+        currentWind.innerHTML = "Wind:" + "";
+        currentTemp.innerHTML = "Temperature:" + "";   
 
         const forcastKey = "6ed102388c0f7d2090336e3ef5fc46dd";
         const forcastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=${units}`;
