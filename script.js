@@ -33,7 +33,8 @@ async function fetchWeatherData(city) {
         let lat = weatherData.coord.lat;
         let lon = weatherData.coord.lon;
         console.log(lat,lon); // here we have the longitude and latitude values needed for the geoloacation api
-      
+
+        searchInput.value = "";
         let units = "metric";
 
         const forcastKey = "6ed102388c0f7d2090336e3ef5fc46dd";
