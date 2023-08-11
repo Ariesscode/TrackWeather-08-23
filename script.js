@@ -47,7 +47,8 @@ async function fetchWeatherData(city) {
         currentcityDisplay.innerHTML = forcastWeatherData.city.name;
         currentHumidity.innerHTML += " " + forcastWeatherData.list[0].main.humidity + " %";
         currentWind.innerHTML += " " + forcastWeatherData.list[0].wind.speed + " MPH";
-
+        currentTemp.innerHTML += " " + Math.round(forcastWeatherData.list[0].main.temp * 1.8 + 32) + "\u00B0" + "F";
+        
     } catch(err) {                                                                   
         console.log(err);    
         
