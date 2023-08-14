@@ -126,13 +126,15 @@ async function fetchWeatherData(city) {
             const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
 
 console.log(date, humidity, temperature,  wind, iconCode, dateString, cityName);
-            return `<div class="current-city-display">
+            return currentDisplay.innerHTML = `<div class="current-city-display">
             <h2 id="current-city">${cityName}</h2>
-            <div id="current-date" class="current-date">${date}</div>
+            <div id="current-date" class="current-date">${dateString}</div>
             <div id="current-temp" class="temp">Temperature: ${temperature}</div>
             <div id="current-wind" class="wind">Wind: ${wind}</div>
             <div id="current-humidity" class="humidity">Humidity: ${humidity}</div>`
            
+
+
         });
 
         
