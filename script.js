@@ -25,7 +25,7 @@ var friHumidity = document.getElementById("fri-humidity");
 var mImage = document.getElementById("m-img");
 var mWeatherImg = document.getElementById("m-weather-img");
 //the array that i got from the five day forcast, did not divide or have object names of daily, hourly, or minutely, everything was a big list <----please read note, feedback
-
+var clearButtn = document.getElementById("clear-history");
 var searchHistory = [];
 
 
@@ -48,6 +48,13 @@ searchButton.addEventListener('click', (e) => {
     document.getElementById("recent").innerHTML = recentList;
     }
    
+   
+    
+    clearButtn.addEventListener("click", eraseHistory);
+
+    function eraseHistory() {
+        document.getElementById("recent").innerHTML = "";
+    }
 
     var cityDisplay = searchInput.value;
     if (cityDisplay) {
