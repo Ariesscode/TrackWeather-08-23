@@ -1,6 +1,7 @@
 var searchButton = document.querySelector("#search-button");
 var searchInput = document.getElementById("city-input");
-var currentDisplay = document.getElementById("currentCityData");
+var currentDisplay = document.getElementById("current");
+var weatherCards = document.querySelectorAll(".weather-cards");
 
 //the array that i got from the five day forcast, did not divide or have object names of daily, hourly, or minutely, everything was a big list <----please read note, feedback
 var clearButtn = document.getElementById("clear-history");
@@ -112,6 +113,9 @@ async function fetchWeatherData(city) {
         const nextDaysWeatherData = forcastWeatherData.list.filter(item => {
             const itemDate = new Date(item.dt_txt);
             return itemDate.getDate() > currentDate.getDate();
+
+
+            
         });
 
         nextDaysWeatherData.forEach(item => {
@@ -126,17 +130,37 @@ async function fetchWeatherData(city) {
             const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
 
 console.log(date, humidity, temperature,  wind, iconCode, dateString, cityName);
-            return currentDisplay.innerHTML = `<div class="current-city-display">
+            
+
+
+currentDisplay.innerHTML = `<div class="current-city-display">
             <h2 id="current-city">${cityName}</h2>
             <div id="current-date" class="current-date">${dateString}</div>
             <div id="current-temp" class="temp">Temperature: ${temperature}</div>
             <div id="current-wind" class="wind">Wind: ${wind}</div>
             <div id="current-humidity" class="humidity">Humidity: ${humidity}</div>`
-           
-
 
         });
 
+        for (let i = 0; i < nextDaysWeatherData.length; i++) {
+            const day = nextDaysWeatherData[i];
+            const date = new Date(day.dt_txt);
+            const dateString = date.toISOString().split('T')[0];
+            const temperature = Math.round(day.main.temp * 1.8 + 32) + "\u00B0" + "F";
+            const wind = item.wind.speed + " MPH";
+            const humidity = day.main.humidity + "%";
+            const iconCode = day.weather[0].icon;
+            const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+            
+
+            const weatherCard = weatherCards[i];
+
+            weatherCard.querySelector('.date').textContent = "Date: " + dateString;
+            weatherCard.querySelector('.weather-icon').innerHTML = `<img src="${iconUrl}" alt="Weather Icon">`;
+            weatherCard.querySelector('.temperature').textContent = "Temperature: " + temperature;
+            weatherCard.querySelectorAll('.wind').textContent = "Wind: " + wind;
+            weatherCard.querySelector('.humidity').textContent = "Humidity: " + humidity;
+        }
         
         
     } catch (err) {

@@ -9,11 +9,11 @@
 </head>
 
 <body>
-    
+
     <div class="weather-heading">
         <h1>Weather-Forcast</h1>
     </div>
-    
+
     <div class="wrapper">
         <div class="search-container">
             <h2>Search for a city:</h2>
@@ -24,7 +24,7 @@
             <div id="recent" class="recentList"></div>
             <p></p>
             <button id="clear-history" class="clear-history">Clear History</button>
-            
+
         </div>
 
         <div id="currentCityData" class="current-city-wrapper">
@@ -34,64 +34,63 @@
                 <div id="current-temp" class="temp">Temperature:</div>
                 <div id="current-wind" class="wind">Wind:</div>
                 <div id="current-humidity" class="humidity">Humidity:</div>
-        </div>
-        <div class="fiveday-forcast">
+            </div>
+            <div class="fiveday-forcast">
                 <h2>5-Day Forcast</h2>
-            
-
-            <div class="weather-cards">
-                <div id="monday-forcast" class="monday-forcast">
-                    <div id="m-date" class="m-date">08/12/2023</div>
-                    <div id="m-img" class="weather-img">
-                        <img id="m-weather-img" src="https://openweathermap.org/img/wn/02d@2x.png" alt="weather-icon">
-                    </div>
-                    <div id= m-temp class="m-temp">Temp:</div>
-                    <div id="m-wind" class="m-wind">Wind:</div>
-                    <div id="m-humidity" class="m-humidity">Humidity:</div>
-                </div>
-                <div class="tuesday-forcast">
-                    <div class="tues-date">08/13/2023</div>
+                <div class="wrapper-cards">
+                <div class="weather-cards">
+                    <div class="date">Date:</div>
                     <div id="weather-img" class="weather-img">
-                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
+                        <img id="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
                     </div>
-                    <div id="tues-temp" class="tues-temp">Temp:</div>
-                    <div id="tues-wind" class="tues-wind">Wind:</div>
-                    <div id="tues-humidity" class="tues-humidity">Humidity:</div>
+                    <div id="temp" class="temp">Temp:</div>
+                    <div id="wind" class="wind">Wind:</div>
+                    <div id="humidity" class="humidity">Humidity:</div>
                 </div>
-                <div class="wednesday-forcast">
-                    <div class="wed-date">08/14/2023</div>
+                <div class="weather-cards">
+                    <div class="date">Date:</div>
+                    <div id="weather-img" class="weather-img">
+                        <img id="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
+                    </div>
+                    <div id="temp" class="temp">Temp:</div>
+                    <div id="wind" class="wind">Wind:</div>
+                    <div id="humidity" class="humidity">Humidity:</div>
+                </div>
+                <div class="weather-cards">
+                    <div class="date">Date:</div>
                     <div class="weather-img">
-                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
+                        <img id="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
                     </div>
-                    <div id="wed-temp" class="wed-temp">Temp:</div>
-                    <div id="wed-wind" class="wed-wind">Wind:</div>
-                    <div id="wed-humidity" class="wed-humidity">Humidity:</div>
+                    <div id="temp" class="temp">Temp:</div>
+                    <div id="wind" class="wind">Wind:</div>
+                    <div id="humidity" class="humidity">Humidity:</div>
                 </div>
-                <div class="thursday-forcast">
-                    <div class="thurs-date">08/15/2023</div>
+                <div class="weather-cards">
+                    <div class="date">Date:</div>
                     <div class="weather-img">
-                        <img src="https://openweathermap.org/img/wn/04d@2x.png" alt="weather-icon">
+                        <img id="weather-icon" src="https://openweathermap.org/img/wn/04d@2x.png" alt="weather-icon">
                     </div>
-                    <div id="thurs-temp" class="thurs-temp">Temp:</div>
-                    <div id="thurs-wind" class="thurs-wind">Wind:</div>
-                    <div id="thurs-humidity" class="thurs-humidity">Humidity:</div>
+                    <div id="temp" class="temp">Temp:</div>
+                    <div id="wind" class="wind">Wind:</div>
+                    <div id="humidity" class="humidity">Humidity:</div>
                 </div>
-                <div class="friday-forcast">
-                    <div id="fri-date" class="fri-date">8/16/2023</div>
+                <div class="weather-cards">
+                    <div id="date" class="date">Date:</div>
                     <div class="weather-img">
-                        <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
+                        <img id="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon">
                     </div>
-                    <div id="fri-temp" class="fri-temp">Temp:</div>
-                    <div id="fri-wind" class="fri-wind">Wind:</div>
-                    <div id="fri-humidity" class="fri-humidity">Humidity:</div>
+                    <div id="temp" class="temp">Temp:</div>
+                    <div id="wind" class="wind">Wind:</div>
+                    <div id="humidity" class="humidity">Humidity:</div>
                 </div>
-               
-                
+
+                </div>
+
             </div>
         </div>
-    </div>
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-<script src="./script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"
+            integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+        <script src="./script.js"></script>
 </body>
 
 </html>

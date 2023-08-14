@@ -28,6 +28,7 @@ h1 {
 
 
 
+
 .wrapper {
     display: flex;
     padding-left: 20px;
@@ -69,10 +70,15 @@ h1 {
 
 .weather-cards {
     display: flex;
+    flex-direction: column;
     padding-top: 10px;
 
 
 
+}
+
+.wrapper-cards {
+display:flex;
 }
 
 .city-option {
@@ -100,13 +106,14 @@ h1 {
 .current-city-display {
     padding-left: 5px;
     padding-top: 10px;
-    border: 1px solid black;
+    
     padding-bottom: 20px;
     background-color:rgba(128, 128, 128, 0.24);
     
 
 
 }
+
 
 .current-city-display h2 {
     padding-bottom: 20px;
@@ -128,10 +135,10 @@ h1 {
 }
 
 
-.monday-forcast {
+.weather-card {
     background-color:rgba(128, 128, 128, 0.24);
     padding: 5px;
-    width: 30%;
+   
     height: 200px;
     margin-right: 5px;
    
@@ -139,69 +146,7 @@ h1 {
 
 }
 
-.tuesday-forcast {
-    background-color:rgba(8, 8, 90, 0.747);
-    padding: 5px;
-    width: 30%;
-    height: 200px;
-    margin-right: 5px;
-    
 
-}
-
-
-.wednesday-forcast {
-    background-color: rgba(128, 128, 128, 0.24);
-    padding: 5px;
-    width: 30%;
-    height: 200px;
-    margin-right: 5px;
-   
-
-}
-
-
-.thursday-forcast {
-    background-color: rgba(128, 128, 128, 0.24);
-    padding: 5px;
-    width: 30%;
-    height: 200px;
-    margin-right: 5px;
-   
-
-}
-
-
-.friday-forcast {
-    background-color:rgba(128, 128, 128, 0.24);
-    padding: 5px;
-    width: 30%;
-    height: 200px;
-    margin-right: 5px;
-    
-
-}
-
-
-.saturday-forcast {
-    background-color: rgba(128, 128, 128, 0.24);
-    padding: 5px;
-    width: 30%;
-    height: 200px;
-    margin-right: 5px;
-    
-
-}
-
-
-.sunday-forcast {
-    background-color: rgba(128, 128, 128, 0.24);
-    padding: 5px;
-    width: 30%;
-    height: 200px;
-    margin-right: 5px;
-    
-}
 
 
 .search-history {
