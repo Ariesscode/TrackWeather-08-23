@@ -90,7 +90,7 @@ async function fetchWeatherData(city) {
         currentHumidity.innerHTML = "Humidity:" + "";
         currentWind.innerHTML = "Wind:" + "";
         currentTemp.innerHTML = "Temperature:" + "";
-        currentDate.innerHTML ="";
+       
 
 
         const forcastKey = "6ed102388c0f7d2090336e3ef5fc46dd";
@@ -100,39 +100,53 @@ async function fetchWeatherData(city) {
         var forcastWeatherData = await fetch(`${forcastUrl}`).then(response => response.json());
         console.log(forcastWeatherData);
 
-        var currentcityDisplay = document.getElementById("current-city");
-        currentcityDisplay.innerHTML = forcastWeatherData.city.name;
-        currentHumidity.innerHTML += " " + forcastWeatherData.list[0].main.humidity + "%";
-        currentWind.innerHTML += " " + forcastWeatherData.list[0].wind.speed + " MPH";
-        currentTemp.innerHTML += " " + Math.round(forcastWeatherData.list[0].main.temp * 1.8 + 32) + "\u00B0" + "F";
-        currentDate.innerHTML += " " + forcastWeatherData.list[0].dt_txt;
+        const dailyWeatherData = [];
+
+        for (const item of forcastWeatherData.list) {
+            const date = new Date(item.dt_txt);
 
 
-        //Reason I had to do it like this, because my array that I got back was one big list with no daily,hourly,minutely,use the 5 forcast day from openweather api. Hope there is a resolution to this, so that i could use a loop
-        mTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[4].main.temp * 1.8 + 32) + "\u00B0" + "F";
-        mHumidity.innerHTML += " " + forcastWeatherData.list[4].main.humidity + "%";
-        mWind.innerHTML += " " + forcastWeatherData.list[4].wind.speed + " MPH";
-       
-
-        tuesTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[12].main.temp * 1.8 + 32) + "\u00B0" + "F";
-        tuesHumidity.innerHTML += " " + forcastWeatherData.list[12].main.humidity + "%";
-        tuesWind.innerHTML += " " + forcastWeatherData.list[12].wind.speed + " MPH";
+            const dateString = item.dt_txt.split(' ')[0];
 
 
-        wedTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[20].main.temp * 1.8 + 32) + "\u00B0" + "F";
-        wedHumidity.innerHTML += " " + forcastWeatherData.list[20].main.humidity + "%";
-        wedWind.innerHTML += " " + forcastWeatherData.list[20].wind.speed + " MPH";
+            if(!dailyWeatherData.some(day => day.date === dateString))  {
+                dailyWeatherData.push({
+                    date: dateString,
+                    icon: item.weather[0].icon,
+                    temp: Math.round(item.main.temp *1.8 + 32) + "\u00B0" + "F",
+                    humidity: item.main.humidity + "%",
+                    wind: item.wind.speed + " MPH"
+                });
+            }
+        }
+
+        for(const day of dailyWeatherData) {
+            console.log(day.date);
+            console.log(day.icon);
+            console.log(day.temp);
+            console.log(day.humidity);
+            console.log(day.wind);
+        }
 
 
-        thursTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[28].main.temp * 1.8 + 32) + "\u00B0" + "F";
-        thursHumidity.innerHTML += " " + forcastWeatherData.list[28].main.humidity + "%";
-        thursWind.innerHTML += " " + forcastWeatherData.list[28].wind.speed + " MPH";
+        const currentDate = new Date();
+        const nextDaysWeatherData = forcastWeatherData.list.filter(item => {
+            const itemDate = new Date(item.dt_txt);
+            return itemDate.getDate() > currentDate.getDate();
+        });
 
+        nextDaysWeatherData.forEach(item => {
+            const date = new Date(item.dt_txt);
+            const dateString = date.toISOString().split('T')[0];
+            const temperature = Math.round(item.main.temp * 1.8 + 32) + "\u00B0" + "F";
+            const humidity = item.main.humidity + "%";
+            const wind = item.wind.speed + " MPH";
+            const iconCode = item.weather[0].icon;
+            const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+           
+        });
 
-        friTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[36].main.temp * 1.8 + 32) + "\u00B0" + "F";
-        friHumidity.innerHTML += " " + forcastWeatherData.list[36].main.humidity + "%";
-        friWind.innerHTML += " " + forcastWeatherData.list[36].wind.speed + " MPH";
-
+        
         
     } catch (err) {
         console.log(err);
