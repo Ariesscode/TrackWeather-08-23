@@ -203,3 +203,17 @@ h1 {
     
 }
 
+
+.search-history {
+    font-size: 20px;
+    color:white;
+    background-color: rgb(18, 7, 82);
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+
+.clear-history {
+float:center;
+}

@@ -26,14 +26,41 @@ var mImage = document.getElementById("m-img");
 var mWeatherImg = document.getElementById("m-weather-img");
 //the array that i got from the five day forcast, did not divide or have object names of daily, hourly, or minutely, everything was a big list <----please read note, feedback
 
+var searchHistory = [];
 
-searchButton.addEventListener('click', () => {
+
+
+
+
+
+searchButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    searchHistory.unshift(searchInput.value)
+    console.log(searchHistory);
+
+    var recentList = "";
+
+    for( let i = 0 ; i < searchHistory.length ; i++) {
+        recentList += `<div id="recent-search" class="recentItem">
+        <p>${searchHistory[i]}</p>
+        </div>`
+
+    document.getElementById("recent").innerHTML = recentList;
+    }
+   
+
     var cityDisplay = searchInput.value;
     if (cityDisplay) {
         fetchWeatherData(cityDisplay);
 
     }
+
+    
+
 });
+
+
+
 
 
 //Async method to fetch data from openweather Api,
@@ -94,7 +121,7 @@ async function fetchWeatherData(city) {
         thursHumidity.innerHTML += " " + forcastWeatherData.list[28].main.humidity + "%";
         thursWind.innerHTML += " " + forcastWeatherData.list[28].wind.speed + " MPH";
 
-        
+
         friTemp.innerHTML = " " + "Temp: " + Math.round(forcastWeatherData.list[36].main.temp * 1.8 + 32) + "\u00B0" + "F";
         friHumidity.innerHTML += " " + forcastWeatherData.list[36].main.humidity + "%";
         friWind.innerHTML += " " + forcastWeatherData.list[36].wind.speed + " MPH";
