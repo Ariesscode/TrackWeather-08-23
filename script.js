@@ -1,29 +1,7 @@
 var searchButton = document.querySelector("#search-button");
 var searchInput = document.getElementById("city-input");
-var currentDate = document.getElementById("current-date");
-var currentTemp = document.getElementById("current-temp")
-var currentWind = document.getElementById("current-wind");
-var currentHumidity = document.getElementById("current-humidity");
-var mondayForcast = document.getElementById("monday-forcast");
-var weatherImg = document.getElementById("weather-img");
-var mDate = document.getElementById("m-date");
-var mTemp = document.getElementById("m-temp");
-var mHumidity = document.getElementById("m-humidity");
-var mWind = document.getElementById("m-wind");
-var tuesTemp = document.getElementById("tues-temp");
-var tuesWind = document.getElementById("tues-wind");
-var tuesHumidity = document.getElementById("tues-humidity");
-var wedTemp = document.getElementById("wed-temp");
-var wedWind = document.getElementById("wed-wind");
-var wedHumidity = document.getElementById("wed-humidity");
-var thursTemp = document.getElementById("thurs-temp");
-var thursHumidity= document.getElementById("thurs-humidity");
-var thursWind = document.getElementById("thurs-wind");
-var friTemp = document.getElementById("fri-temp");
-var friWind = document.getElementById("fri-wind");
-var friHumidity = document.getElementById("fri-humidity");
-var mImage = document.getElementById("m-img");
-var mWeatherImg = document.getElementById("m-weather-img");
+var currentDisplay = document.getElementById("currentCityData");
+
 //the array that i got from the five day forcast, did not divide or have object names of daily, hourly, or minutely, everything was a big list <----please read note, feedback
 var clearButtn = document.getElementById("clear-history");
 var searchHistory = [];
@@ -87,9 +65,7 @@ async function fetchWeatherData(city) {
 
         searchInput.value = "";
         let units = "metric";
-        currentHumidity.innerHTML = "Humidity:" + "";
-        currentWind.innerHTML = "Wind:" + "";
-        currentTemp.innerHTML = "Temperature:" + "";
+      
        
 
 
@@ -111,9 +87,11 @@ async function fetchWeatherData(city) {
 
             if(!dailyWeatherData.some(day => day.date === dateString))  {
                 dailyWeatherData.push({
+                    
                     date: dateString,
+                    name: forcastWeatherData.city.name,
                     icon: item.weather[0].icon,
-                    temp: Math.round(item.main.temp *1.8 + 32) + "\u00B0" + "F",
+                    temp: Math.round(item.main.temp * 1.8 + 32) + "\u00B0" + "F",
                     humidity: item.main.humidity + "%",
                     wind: item.wind.speed + " MPH"
                 });
@@ -126,6 +104,7 @@ async function fetchWeatherData(city) {
             console.log(day.temp);
             console.log(day.humidity);
             console.log(day.wind);
+            console.log(day.name);
         }
 
 
@@ -136,13 +115,23 @@ async function fetchWeatherData(city) {
         });
 
         nextDaysWeatherData.forEach(item => {
+            
             const date = new Date(item.dt_txt);
+            const cityName = forcastWeatherData.city.name;
             const dateString = date.toISOString().split('T')[0];
             const temperature = Math.round(item.main.temp * 1.8 + 32) + "\u00B0" + "F";
             const humidity = item.main.humidity + "%";
             const wind = item.wind.speed + " MPH";
             const iconCode = item.weather[0].icon;
             const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+
+console.log(date, humidity, temperature,  wind, iconCode, dateString, cityName);
+            return `<div class="current-city-display">
+            <h2 id="current-city">${cityName}</h2>
+            <div id="current-date" class="current-date">${date}</div>
+            <div id="current-temp" class="temp">Temperature: ${temperature}</div>
+            <div id="current-wind" class="wind">Wind: ${wind}</div>
+            <div id="current-humidity" class="humidity">Humidity: ${humidity}</div>`
            
         });
 
