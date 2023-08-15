@@ -1,7 +1,6 @@
 var searchButton = document.querySelector("#search-button");
 var searchInput = document.getElementById("city-input");
-var currentDisplay = document.getElementById("current");
-var weatherCards = document.querySelectorAll(".weather-cards");
+
 
 //the array that i got from the five day forcast, did not divide or have object names of daily, hourly, or minutely, everything was a big list <----please read note, feedback
 var clearButtn = document.getElementById("clear-history");
@@ -15,20 +14,22 @@ var searchHistory = [];
 searchButton.addEventListener('click', (e) => {
     e.preventDefault();
     searchHistory.unshift(searchInput.value)
+    const city = searchInput.value;
+    fetchWeatherData(city);
     console.log(searchHistory);
 
     var recentList = "";
 
-    for( let i = 0 ; i < searchHistory.length ; i++) {
+    for (let i = 0; i < searchHistory.length; i++) {
         recentList += `<div id="recent-search" class="recentItem">
         <p>${searchHistory[i]}</p>
         </div>`
 
-    document.getElementById("recent").innerHTML = recentList;
+        document.getElementById("recent").innerHTML = recentList;
     }
-   
-   
-    
+
+
+
     clearButtn.addEventListener("click", eraseHistory);
 
     function eraseHistory() {
@@ -41,7 +42,7 @@ searchButton.addEventListener('click', (e) => {
 
     }
 
-    
+
 
 });
 
@@ -66,12 +67,13 @@ async function fetchWeatherData(city) {
 
         searchInput.value = "";
         let units = "metric";
-      
-       
+
+
 
 
         const forcastKey = "6ed102388c0f7d2090336e3ef5fc46dd";
-        const forcastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=${units}`;
+
+        const forcastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${forcastKey}&units=${units}`;
         //two objects should be listed in console with weather data that will be extracted from
         //forcastWeatherData hold all the five day forcast
         var forcastWeatherData = await fetch(`${forcastUrl}`).then(response => response.json());
@@ -86,9 +88,9 @@ async function fetchWeatherData(city) {
             const dateString = item.dt_txt.split(' ')[0];
 
 
-            if(!dailyWeatherData.some(day => day.date === dateString))  {
+            if (!dailyWeatherData.some(day => day.date === dateString)) {
                 dailyWeatherData.push({
-                    
+
                     date: dateString,
                     name: forcastWeatherData.city.name,
                     icon: item.weather[0].icon,
@@ -96,78 +98,80 @@ async function fetchWeatherData(city) {
                     humidity: item.main.humidity + "%",
                     wind: item.wind.speed + " MPH"
                 });
+
+                const currentCityDisplay = document.getElementById("current-city");
+                const currentDateDisplay = document.getElementById("current-date");
+                const currentHumidityDisplay = document.getElementById("current-humidity");
+                const currentWindDisplay = document.getElementById("current-wind");
+                const currentTempDisplay = document.getElementById("current-temp");
+
+                currentCityDisplay.textContent = dailyWeatherData[0].name;
+                currentDateDisplay.textContent = dailyWeatherData[0].date;
+                currentHumidityDisplay.textContent = "Humidity: " + dailyWeatherData[0].humidity;
+                currentWindDisplay.textContent = "Wind: " + dailyWeatherData[0].wind;
+                currentTempDisplay.textContent = "Temperature: " + dailyWeatherData[0].temp;
             }
+
         }
 
-        for(const day of dailyWeatherData) {
-            console.log(day.date);
-            console.log(day.icon);
-            console.log(day.temp);
-            console.log(day.humidity);
-            console.log(day.wind);
-            console.log(day.name);
-        }
 
 
         const currentDate = new Date();
-        const nextDaysWeatherData = forcastWeatherData.list.filter(item => {
+        const selectedWeatherData = {};
+
+
+        forcastWeatherData.list.forEach(item => {
             const itemDate = new Date(item.dt_txt);
-            return itemDate.getDate() > currentDate.getDate();
+            const dateString = itemDate.toISOString().split('T')[0];
 
-
-            
-        });
-
-        nextDaysWeatherData.forEach(item => {
-            
-            const date = new Date(item.dt_txt);
-            const cityName = forcastWeatherData.city.name;
-            const dateString = date.toISOString().split('T')[0];
-            const temperature = Math.round(item.main.temp * 1.8 + 32) + "\u00B0" + "F";
-            const humidity = item.main.humidity + "%";
-            const wind = item.wind.speed + " MPH";
-            const iconCode = item.weather[0].icon;
-            const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
-
-console.log(date, humidity, temperature,  wind, iconCode, dateString, cityName);
-            
-
-
-currentDisplay.innerHTML = `<div class="current-city-display">
-            <h2 id="current-city">${cityName}</h2>
-            <div id="current-date" class="current-date">${dateString}</div>
-            <div id="current-temp" class="temp">Temperature: ${temperature}</div>
-            <div id="current-wind" class="wind">Wind: ${wind}</div>
-            <div id="current-humidity" class="humidity">Humidity: ${humidity}</div>`
+            if (itemDate.getDate() !== currentDate.getDate()) {
+                if (!selectedWeatherData[dateString]) {
+                    selectedWeatherData[dateString] = {
+                        date: dateString,
+                        temperature: Math.round(item.main.temp * 1.8 + 32) + "\u00B0" + "F",
+                        humidity: item.main.humidity + "%",
+                        wind: item.wind.speed + " MPH",
+                        iconCode: item.weather[0].icon
+                    };
+                }
+            }
 
         });
 
-        for (let i = 0; i < nextDaysWeatherData.length; i++) {
-            const day = nextDaysWeatherData[i];
-            const date = new Date(day.dt_txt);
-            const dateString = date.toISOString().split('T')[0];
-            const temperature = Math.round(day.main.temp * 1.8 + 32) + "\u00B0" + "F";
-            const wind = item.wind.speed + " MPH";
-            const humidity = day.main.humidity + "%";
-            const iconCode = day.weather[0].icon;
-            const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+
+        for (const dateString in selectedWeatherData) {
+            const day = selectedWeatherData[dateString];
+            const iconUrl = `http://openweathermap.org/img/wn/${day.iconCode}.png`;
+            console.log(day.date, day.temperature, day.humidity, day.wind, iconUrl);
+
+
+
             
+                for (let i = 0; i < 5; i++) {
+                    const weatherCardElement = document.querySelectorAll('.weather-cards')[i];
 
-            const weatherCard = weatherCards[i];
+                if (selectedWeatherData[dateString]) {
+                    const day = selectedWeatherData[dateString];
 
-            weatherCard.querySelector('.date').textContent = "Date: " + dateString;
-            weatherCard.querySelector('.weather-icon').innerHTML = `<img src="${iconUrl}" alt="Weather Icon">`;
-            weatherCard.querySelector('.temperature').textContent = "Temperature: " + temperature;
-            weatherCard.querySelectorAll('.wind').textContent = "Wind: " + wind;
-            weatherCard.querySelector('.humidity').textContent = "Humidity: " + humidity;
+                    weatherCardElement.querySelector('.date').textContent = `Date: ${day.date}`;
+                    weatherCardElement.querySelector('.weather-img img').src = `http://openweathermap.org/img/wn/${day.iconCode}.png`;
+                    weatherCardElement.querySelector('.temp').textContent = `Temperature: ${day.temperature}`;
+                    weatherCardElement.querySelector('.wind').textContent = `Wind: ${day.wind}`;
+                    weatherCardElement.querySelector('.humidity').textContent = `Humidity: ${day.humidity}`;
+                }
+
+            }
+
         }
-        
-        
-    } catch (err) {
-        console.log(err);
+
+
+
+
+        } catch (err) {
+            console.log(err);
+
+        }
+
 
     }
-
-
-}
 
