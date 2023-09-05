@@ -184,6 +184,15 @@ h1 {
 
 }
 
+.recentList {
+    background-color: white;
+    padding-top: 0;
+}
+
+.recentList:hover {
+    cursor: pointer;
+
+}
 
 .wednesday-forcast {
     background-color: rgba(128, 128, 128, 0.24);
@@ -246,7 +255,7 @@ h1 {
     text-align: center;
     border: 2px solid black;
     border-radius: 2px;
-    margin-bottom: 5px;
+    
 }
 
 .clear-history {

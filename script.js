@@ -6,6 +6,7 @@ var cardIcon = document.querySelectorAll("#weather-icon");
 var cardDate = document.querySelectorAll(".date");
 var cardWind = document.querySelectorAll("#wind");
 var weatherCards = document.querySelectorAll(".weather-cards");
+var recentSearch = document.querySelector("#recent");
 
 //the array that i got from the five day forcast, did not divide or have object names of daily, hourly, or minutely, everything was a big list <----please read note, feedback
 var clearButtn = document.getElementById("clear-history");
@@ -26,13 +27,21 @@ searchButton.addEventListener('click', (e) => {
 
 
     var recentList = "";
+    function handleClick(cityName) {
+        fetchWeatherData(cityName);
+    }
 
     for (let i = 0; i < searchHistory.length; i++) {
-        recentList += `<div id="recent-search" class="recentItem">
-        <p>${searchHistory[i]}</p>
-        </div>`
+        const listItem = document.createElement("div");
+        listItem.classList.add("recentSearch");
+        listItem.innerHTML = `<p>${searchHistory[i]}</p>`;
 
-        document.getElementById("recent").innerHTML = recentList;
+        listItem.addEventListener("click", () => {
+            handleClick(searchHistory[i]);
+        });
+        recentSearch.appendChild(listItem);
+
+       
     }
 
 
