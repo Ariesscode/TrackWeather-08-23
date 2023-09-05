@@ -18,12 +18,12 @@ var searchHistory = [];
 
 searchButton.addEventListener('click', (e) => {
     e.preventDefault();
-    
+
     searchHistory.unshift(searchInput.value)
-    
+
     const city = searchInput.value;
     fetchWeatherData(city);
-   
+
 
     var recentList = "";
 
@@ -42,14 +42,14 @@ searchButton.addEventListener('click', (e) => {
     function eraseHistory() {
         document.getElementById("recent").innerHTML = "";
     }
-/*
-    var cityDisplay = searchInput.value;
-    if (cityDisplay) {
-        fetchWeatherData(cityDisplay);
-
-    }
-
-*/
+    /*
+        var cityDisplay = searchInput.value;
+        if (cityDisplay) {
+            fetchWeatherData(cityDisplay);
+    
+        }
+    
+    */
 
 });
 
@@ -67,7 +67,7 @@ async function fetchWeatherData(city) {
         const key = "6ed102388c0f7d2090336e3ef5fc46dd";
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
         const weatherData = await fetch(`${url}`).then(response => response.json());
-      
+
         let lat = weatherData.coord.lat;
         let lon = weatherData.coord.lon;
         console.log(lat, lon); // here we have the longitude and latitude values needed for the geoloacation api
@@ -84,7 +84,7 @@ async function fetchWeatherData(city) {
         //two objects should be listed in console with weather data that will be extracted from
         //forcastWeatherData hold all the five day forcast
         var forcastWeatherData = await fetch(`${forcastUrl}`).then(response => response.json());
-        
+
 
         const dailyWeatherData = [];
 
@@ -108,31 +108,34 @@ async function fetchWeatherData(city) {
             }
         }
 
-        
-    function updateWeatherCards(dailyWeatherData) {
-        for (let i = 1; i < dailyWeatherData.length; i++) {
-          cardDate[i].textContent = dailyWeatherData[i].date;
-          cardIcon[i].src = `https://openweathermap.org/img/wn/${dailyWeatherData[i].icon}.png`;
-          cardTemp[i].textContent = `Temperature: ${dailyWeatherData[i].temp}`;
-          cardHumidity[i].textContent = `Humidity: ${dailyWeatherData[i].humidity}`;
-          cardWind[i].textContent = `Wind: ${dailyWeatherData[i].wind}`;
-          const currentCityDisplay = document.getElementById("current-city");
+
+        function updateWeatherCards(dailyWeatherData) {
+            
+                const currentCityDisplay = document.getElementById("current-city");
                 const currentDateDisplay = document.getElementById("current-date");
                 const currentHumidityDisplay = document.getElementById("current-humidity");
                 const currentWindDisplay = document.getElementById("current-wind");
                 const currentTempDisplay = document.getElementById("current-temp");
                 console.log("daily:", dailyWeatherData);
+
                 currentCityDisplay.textContent = dailyWeatherData[0].name;
                 currentDateDisplay.textContent = dailyWeatherData[0].date;
                 currentHumidityDisplay.textContent = "Humidity: " + dailyWeatherData[0].humidity;
                 currentWindDisplay.textContent = "Wind: " + dailyWeatherData[0].wind;
                 currentTempDisplay.textContent = "Temperature: " + dailyWeatherData[0].temp;
-        }
-    }
-        updateWeatherCards(dailyWeatherData);
-    
 
-     } catch (err) {
+                for (let i = 1; i < dailyWeatherData.length; i++) {
+                    cardDate[i - 1].textContent = dailyWeatherData[i].date;
+                    cardIcon[i - 1].src = `https://openweathermap.org/img/wn/${dailyWeatherData[i].icon}.png`;
+                    cardTemp[i - 1].textContent = `Temperature: ${dailyWeatherData[i].temp}`;
+                    cardHumidity[i - 1].textContent = `Humidity: ${dailyWeatherData[i].humidity}`;
+                    cardWind[i - 1].textContent = `Wind: ${dailyWeatherData[i].wind}`;
+            }
+        }
+        updateWeatherCards(dailyWeatherData);
+
+
+    } catch (err) {
         console.log(err);
 
     }
