@@ -5,6 +5,7 @@ var cardHumidity = document.querySelectorAll("#humidity");
 var cardIcon = document.querySelectorAll("#weather-icon");
 var cardDate = document.querySelectorAll(".date");
 var cardWind = document.querySelectorAll("#wind");
+var weatherCards = document.querySelectorAll(".weather-cards");
 
 //the array that i got from the five day forcast, did not divide or have object names of daily, hourly, or minutely, everything was a big list <----please read note, feedback
 var clearButtn = document.getElementById("clear-history");
@@ -119,10 +120,13 @@ async function fetchWeatherData(city) {
                 currentWindDisplay.textContent = "Wind: " + dailyWeatherData[0].wind;
                 currentTempDisplay.textContent = "Temperature: " + dailyWeatherData[0].temp;
                 
-            
-
-
+                
+                
         
+        
+        
+        
+    
 
     } catch (err) {
         console.log(err);
