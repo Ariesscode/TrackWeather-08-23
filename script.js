@@ -15,14 +15,13 @@ var searchHistory = [];
 
 
 
-
-
 searchButton.addEventListener('click', (e) => {
     e.preventDefault();
 
     searchHistory.unshift(searchInput.value)
 
     const city = searchInput.value;
+    
     fetchWeatherData(city);
 
 
