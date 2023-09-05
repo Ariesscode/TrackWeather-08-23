@@ -73,8 +73,11 @@ function currentTime() {
 
     let time = hh + ":" + mm + ":" + ss + " " + session;
     document.getElementById("clock").innerText = time;
-}
-
+    
+    let t = setTimeout(function() {
+        currentTime() }, 1000);
+    }
+currentTime();
 
 
 //Async method to fetch data from openweather Api,

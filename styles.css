@@ -139,6 +139,13 @@ h1 {
     
 }
 
+.clock {
+    color:orange;
+    text-align: center;
+    font-weight:bold;
+    font-size: 2em;
+}
+
 .current-city-wrapper {
     width:50%;
 }
