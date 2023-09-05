@@ -108,7 +108,15 @@ async function fetchWeatherData(city) {
             }
         }
 
-                const currentCityDisplay = document.getElementById("current-city");
+        
+    function updateWeatherCards(dailyWeatherData) {
+        for (let i = 1; i < dailyWeatherData.length; i++) {
+          cardDate[i].textContent = dailyWeatherData[i].date;
+          cardIcon[i].src = `https://openweathermap.org/img/wn/${dailyWeatherData[i].icon}.png`;
+          cardTemp[i].textContent = `Temperature: ${dailyWeatherData[i].temp}`;
+          cardHumidity[i].textContent = `Humidity: ${dailyWeatherData[i].humidity}`;
+          cardWind[i].textContent = `Wind: ${dailyWeatherData[i].wind}`;
+          const currentCityDisplay = document.getElementById("current-city");
                 const currentDateDisplay = document.getElementById("current-date");
                 const currentHumidityDisplay = document.getElementById("current-humidity");
                 const currentWindDisplay = document.getElementById("current-wind");
@@ -119,16 +127,12 @@ async function fetchWeatherData(city) {
                 currentHumidityDisplay.textContent = "Humidity: " + dailyWeatherData[0].humidity;
                 currentWindDisplay.textContent = "Wind: " + dailyWeatherData[0].wind;
                 currentTempDisplay.textContent = "Temperature: " + dailyWeatherData[0].temp;
-                
-                
-                
-        
-        
-        
-        
+        }
+    }
+        updateWeatherCards(dailyWeatherData);
     
 
-    } catch (err) {
+     } catch (err) {
         console.log(err);
 
     }
