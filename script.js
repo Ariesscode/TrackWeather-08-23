@@ -42,18 +42,37 @@ searchButton.addEventListener('click', (e) => {
     function eraseHistory() {
         document.getElementById("recent").innerHTML = "";
     }
-    /*
+    
         var cityDisplay = searchInput.value;
         if (cityDisplay) {
             fetchWeatherData(cityDisplay);
     
         }
     
-    */
+    
 
 });
 
+function currentTime() {
+    let date = new Date();
+    let hh = date.getHours();
+    let mm = date.getMinutes();
+    let ss = date.getSeconds();
+    let session = "AM";
 
+    if(hh === 0) {
+        hh = 12;
+    }
+    if(hh > 12) {
+        hh = hh - 12;
+        session = "PM";
+    }
+    hh = (hh < 10) ? "0" + hh : hh;
+    mm = (mm < 10) ? "0" + mm : mm;
+    ss = (ss < 10) ? "0" + ss : ss;
+
+    
+}
 
 
 
@@ -119,10 +138,15 @@ async function fetchWeatherData(city) {
                 console.log("daily:", dailyWeatherData);
 
                 currentCityDisplay.textContent = dailyWeatherData[0].name;
+                currentCityDisplay.style.color = "blue";
                 currentDateDisplay.textContent = dailyWeatherData[0].date;
+                currentDateDisplay.style.fontWeight = "bold";
                 currentHumidityDisplay.textContent = "Humidity: " + dailyWeatherData[0].humidity;
+                currentHumidityDisplay.style.fontWeight = "bold";
                 currentWindDisplay.textContent = "Wind: " + dailyWeatherData[0].wind;
+                currentWindDisplay.style.fontWeight = "bold";
                 currentTempDisplay.textContent = "Temperature: " + dailyWeatherData[0].temp;
+                currentTempDisplay.style.fontWeight = "bold";
 
                 for (let i = 1; i < dailyWeatherData.length; i++) {
                     cardDate[i - 1].textContent = dailyWeatherData[i].date;
