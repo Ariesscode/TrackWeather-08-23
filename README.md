@@ -5,6 +5,9 @@ This weeks challenege was to create a weather app, which will display the curren
 
 Deployed TrackWeather0823 App: https://ariesscode.github.io/TrackWeather-08-23/
 
+## ScreenShot of App
+![Alt text](images/screenshotApp.png)
+
 ## User Story
 
 ```
